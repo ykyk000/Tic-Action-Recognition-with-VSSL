@@ -123,7 +123,7 @@ def train_model_interface(args, label_minibatch, unlabel_minibatch, epoch, wt_ra
     if args.gv:
         batch_grad = measure_pixelwise_gradient(output, conf_thresh_lower=args.lower_thresh, conf_thresh_upper=args.upper_thresh)
         batch_grad = batch_grad.type(torch.cuda.FloatTensor)
-        # ----------自己的方法------------------
+        # ----------our method------------------
         batch_grad_aug = measure_pixelwise_gradient(flipped_pred_seg_map, conf_thresh_lower=args.lower_thresh, conf_thresh_upper=args.upper_thresh)
         batch_grad_aug= batch_grad.type(torch.cuda.FloatTensor)
         loss_wt_grad = consistency_criterion(batch_grad,batch_grad_aug)
